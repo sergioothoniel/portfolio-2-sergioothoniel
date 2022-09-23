@@ -30,9 +30,8 @@ export const Project = (): JSX.Element => {
         `https://api.github.com/users/${userData.githubUser}/repos?sort=created&direction=desc`
       );
 
-      const json = await data.json();
-
-      setRepositories(json);
+      const json = await data.json();      
+      setRepositories(json.filter((repository: any)  => repository.stargazers_count > 0));
 
       return json;
     };
